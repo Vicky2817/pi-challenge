@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Vicky2817/pi-challenge.git'
+            }
+        }
+        stage('Run Algorithm') {
+            steps {
+                sh 'chmod +x algorithm.sh'
+                sh './algorithm.sh'
+            }
+        }
+    }
+}
