@@ -15,6 +15,13 @@ pipeline {
                 sh 'cat -A algorithm.sh'  // Show special characters
             }
         }
+        stage('Run Python file'){
+            steps {
+                script {
+                    sh 'python script1.py'
+                }
+            }
+        }
         stage('Run Algorithm') {
             steps {
                 script {
@@ -25,13 +32,6 @@ pipeline {
                     // Ensure script is executable
                     sh 'chmod +x algorithm.sh'
                     sh './algorithm.sh'
-                }
-            }
-        }
-        stage('Run Python file'){
-            steps {
-                script {
-                    sh 'python script1.py'
                 }
             }
         }
