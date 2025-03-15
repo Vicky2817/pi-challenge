@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Number of iterations (higher = more accuracy)
 ITERATIONS=1000000
 inside_circle=0
 
