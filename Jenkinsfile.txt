@@ -3,13 +3,25 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/Vicky2817/pi-challenge.git'
+                script {
+                    // Ensure repository is pulled correctly
+                    checkout scm
+                }
+            }
+        }
+        stage('List Files') {
+            steps {
+                // Check if the script is available in the workspace
+                sh 'ls -lah'
             }
         }
         stage('Run Algorithm') {
             steps {
-                sh 'chmod +x algorithm.sh'
-                sh './algorithm.sh'
+                script {
+                    // Make sure the script is in the correct path and executable
+                    sh 'chmod +x ./algorithm.sh'
+                    sh './algorithm.sh'
+                }
             }
         }
     }
