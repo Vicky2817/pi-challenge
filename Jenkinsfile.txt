@@ -4,22 +4,25 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 script {
-                    // Ensure repository is pulled correctly
                     checkout scm
                 }
             }
         }
-        stage('List Files') {
+        stage('Debug File') {
             steps {
-                // Check if the script is available in the workspace
-                sh 'ls -lah'
+                sh 'ls -lah'   // List files
+                sh 'file algorithm.sh'  // Check file type
+                sh 'cat -A algorithm.sh'  // Show special characters
             }
         }
         stage('Run Algorithm') {
             steps {
                 script {
-                    // Make sure the script is in the correct path and executable
-                    sh 'chmod +x ./algorithm.sh'
+                    // Fix potential Windows line-endings
+                    sh 'sed -i "s/\r$//" algorithm.sh'
+
+                    // Ensure script is executable
+                    sh 'chmod +x algorithm.sh'
                     sh './algorithm.sh'
                 }
             }
