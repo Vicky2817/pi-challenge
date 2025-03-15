@@ -22,18 +22,6 @@ pipeline {
                 }
             }
         }
-        stage('Run Algorithm') {
-            steps {
-                script {
-                    // Convert CRLF to LF
-                    sh 'apt-get update && apt-get install -y dos2unix || yum install -y dos2unix'
-                    sh 'dos2unix algorithm.sh'
-        
-                    // Ensure script is executable
-                    sh 'chmod +x algorithm.sh'
-                    sh './algorithm.sh'
-                }
-            }
-        }
+
     }
 }
